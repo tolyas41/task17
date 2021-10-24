@@ -26,6 +26,21 @@ void AUnit::BeginPlay()
 	Super::BeginPlay();
 }
 
+void AUnit::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+#if UE_BUILD_DEVELOPMENT
+	UE_LOG(LogTemp, Warning, TEXT("Unit %s is dead"), *(this->GetName()));
+#endif
+}
+
+void AUnit::PostActorCreated()
+{
+#if UE_BUILD_DEVELOPMENT
+	UE_LOG(LogTemp, Warning, TEXT("Unit %s arrived"), *(this->GetName()));
+#endif
+}
+
+
 void AUnit::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
